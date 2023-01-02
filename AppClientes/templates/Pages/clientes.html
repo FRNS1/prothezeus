@@ -1,0 +1,154 @@
+{% load clientestags %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prothezeus</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body style="background-color: #40E0D0">
+    <main class="main-content position-relative border-radius-lg">
+        <form>
+            <div class="col-1">
+                <a class="btn card rounded shadow" href="{% url 'LoginPage:homepage' %}">Prothezeus</a>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center" style="margin-bottom: 20px; margin-top: 70px">
+                <div class="col-10 d-flex card rounded shadow justify-content-center align-items-center">
+                    <div class="row" style="height: 80px">
+                        <div class="d-flex col-2 py-2 form-inline justify-content-center" style="margin: 0 auto; padding-left: 70px">
+                            <form class="justify-content-center align-items-center" method="get">
+                                {{ cliente_filter.form.as_p }}
+                            </form>
+                        </div>
+                        <div class="col-2 py-1 mr-1 w-10 h-75" style="margin-top: 1rem;">
+                            <button class="btn shadow border" style="margin-left: 50%; margin-top: 0%;"> Enviar </button>
+                        </div>
+                    </div>
+                </div>
+                <div class='col-1 d-flex justify-content-center align-items-center'
+                    style="margin-left: 10px; margin-top: 10px;">
+                    <button type="button" class="btn btn-danger my-1"> <a class="text-decoration-none text-white" href="/clientes/"> Delete </a></button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-12">
+                <div class="card rounded shadow p-3 mx-5 my-1">
+                    <table class="table align-items-center mb-0">
+                        <thead class="border-radius-lg shadow">
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">
+                                ID do Cliente</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">
+                                Nome Cliente</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">
+                                Telefone</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">
+                                E-mail</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">
+                                Endereço</th>
+                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7" scope="col">
+                                Preço PPR</th>
+                        </thead>
+                        <tbody class="border-radius-lg shadow">
+                            {% for c in cliente_obj %}
+                            <tr class="align-items-center">
+                                <td class="align-middle text-right">
+                                    {{c.id}}
+                                </td>
+                                <td class="align-middle text-right">
+                                    {{c.nome_completo}}
+                                </td>
+                                <td class="align-middle text-right">
+                                    {{c.telefone}}
+                                </td>
+                                <td class="align-middle text-right">
+                                    {{c.email}}
+                                </td>
+                                <td class="align-middle text-right">
+                                    {{c.endereco}}
+                                </td>
+                                <td class="align-middle text-right">
+                                    R$ {{c.preco}}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex pagination mt-3 mb-3 justify-content-center">
+
+            {% if cliente_obj.has_previous %}
+            <a id="pagination_buttons" href="{% my_url cliente_obj.previous_page_number 'page' request.GET.urlencode %}"
+                class="btn card rounded" style="margin-left: 10px; margin-right: 10px; height:10%;">&laquo</a>
+            <a id="pagination_buttons" href="{% my_url 1 'page' request.GET.urlencode %}" class="btn card rounded"
+                style="margin-left: 10px; margin-right: 10px; height:10%;">First</a>
+            {% endif %}
+    
+            <div class="btn card rounded" style="cursor: none; height:10%;">Page {{ cliente_obj.number }} of {{ cliente_obj.paginator.num_pages }}</div>
+    
+            <a id="pagination_buttons" href="{% my_url cliente_obj.paginator.num_pages 'page' request.GET.urlencode %}"
+                class="btn card rounded" style="margin-left: 10px; margin-right: 10px; height:10%;">Last</a>
+    
+            {% if cliente_obj.has_next %}
+            <a id="pagination_buttons" href="{% my_url cliente_obj.next_page_number 'page' request.GET.urlencode %}"
+                class="btn card rounded" style="margin-left: 10px; margin-right: 10px; height:10%;">&raquo</a>
+            {% endif %}
+        </div>
+
+        <div class='col-1 d-flex justify-content-center align-items-center w-1'
+        style="margin-left: 10px; margin-top: -50px;">
+        <a class="text-decoration-none text-black" href="{% url 'AppClientes:ClientesCad' %}"> <button type="button" class="my-1 btn card rounded" style="margin-left: 3450px;"> Cadastrar </button></a>
+        </div>
+
+    </main>
+</body>
+
+<script>
+    nome_cliente = document.getElementById('id_nome_completo__icontains')
+    nome_cliente.setAttribute('class', 'h-35 border-radius-lg form-control')
+    nome_cliente.setAttribute('style', 'width:200px; margin: 0 auto; margin-left: 20px; margin-top: 0.8rem;')
+    nome_cliente.setAttribute('placeholder', 'Nome do cliente')
+
+    telefone_cliente = document.getElementById('id_telefone__icontains')
+    telefone_cliente.setAttribute('class', 'h-35 border-radius-lg form-control')
+    telefone_cliente.setAttribute('style', 'width:200px; margin: 0 auto; margin-left: 20px; margin-top: 0.8rem;')
+    telefone_cliente.setAttribute('placeholder', 'Telefone do cliente')
+
+    email_cliente = document.getElementById('id_email__icontains')
+    email_cliente.setAttribute('class', 'h-35 border-radius-lg form-control')
+    email_cliente.setAttribute('style', 'width:200px; margin: 0 auto; margin-left: 20px; margin-top: 0.8rem;')
+    email_cliente.setAttribute('placeholder', 'Email do cliente')
+
+    endereco_cliente = document.getElementById('id_endereco__icontains')
+    endereco_cliente.setAttribute('class', 'h-35 border-radius-lg form-control')
+    endereco_cliente.setAttribute('style', 'width:200px; margin: 0 auto; margin-left: 20px; margin-top: 0.8rem;')
+    endereco_cliente.setAttribute('placeholder', 'Endereço do cliente')
+
+    preco_cliente = document.getElementById('id_preco__icontains')
+    preco_cliente.setAttribute('class', 'h-35 border-radius-lg form-control')
+    preco_cliente.setAttribute('style', 'width:200px; margin: 0 auto; margin-left: 20px; margin-top: 0.8rem;')
+    preco_cliente.setAttribute('placeholder', 'Preço PPR')
+
+    label_preco_cliente = document.querySelector('body > main > form > div > div.col-10.d-flex.card.rounded.shadow.justify-content-center.align-items-center > div > div.d-flex.col-2.py-2.form-inline.justify-content-center > p:nth-child(5) > label')
+    label_preco_cliente.style.display = 'none'
+
+    label_endereco_cliente = document.querySelector('body > main > form > div > div.col-10.d-flex.card.rounded.shadow.justify-content-center.align-items-center > div > div.d-flex.col-2.py-2.form-inline.justify-content-center > p:nth-child(4) > label')
+    label_endereco_cliente.style.display = 'none'
+
+    label_email_cliente = document.querySelector('body > main > form > div > div.col-10.d-flex.card.rounded.shadow.justify-content-center.align-items-center > div > div.d-flex.col-2.py-2.form-inline.justify-content-center > p:nth-child(3) > label')
+    label_email_cliente.style.display = 'none'
+
+    label_telefone_cliente = document.querySelector('body > main > form > div > div.col-10.d-flex.card.rounded.shadow.justify-content-center.align-items-center > div > div.d-flex.col-2.py-2.form-inline.justify-content-center > p:nth-child(2) > label')
+    label_telefone_cliente.style.display = 'none'
+
+    label_nome_cliente_cliente = document.querySelector('body > main > form > div > div.col-10.d-flex.card.rounded.shadow.justify-content-center.align-items-center > div > div.d-flex.col-2.py-2.form-inline.justify-content-center > p:nth-child(1) > label')
+    label_nome_cliente_cliente.style.display = 'none'
+</script>
+
+</html>

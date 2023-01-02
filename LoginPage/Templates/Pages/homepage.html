@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prothezeus</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body style="background-color: #40E0D0">
+    <main class="main-content position-relative border-radius-lg">
+        <div class="row text-center text-white my-5">
+            <h1>MENU PRINCIPAL</h1>
+        </div>
+        <div class="d-block container col-md-4 w-100 p-5 text-center font-weight-bold" style="margin-top: 200px;">
+            <div class="card rounded shadow h-50">Ordens de Serviço</div>
+            <div class="card rounded shadow h-50 mt-2">Roteiro de Entregas</div>
+            <div class="card rounded shadowh-50 mt-2">Roteiro de Retiradas</div>
+            <div class="card rounded shadow h-50 mt-2"> 
+                <a class="text-decoration-none text-dark" href="{% url 'AppClientes:ClientesLab' %}">Clientes</a>
+            </div>
+            <div class="card h-50 mt-2">Tipos de Serviço</div>
+        </div>
+    </main>
+</body>
+
+</html>

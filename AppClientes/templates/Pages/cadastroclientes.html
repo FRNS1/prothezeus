@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prothezeus</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+<body style="background-color: #40E0D0">
+    <main class="main-content position-relative border-radius-lg">
+            <div class="card rounded shadow justify-content-center p-5 mt-3 mt-5" style="height: 700px; width: 1500px; margin: 0 auto;">
+                <div class="row p-1 mt-5" style="margin-left: 480px; margin-bottom: 170px">
+                    <h1 class="text-dark mt-5"> CADASTRO CLIENTES </h1>
+                    <div style="margin-left: 100px;">
+                        <form method='POST' class="mt-4" style="margin-right: 300px">
+                            {{form.as_p}}
+                            <div class="row" style="margin: 0 auto">
+                                <div class='col-1 d-flex justify-content-center align-items-center w-1' style="margin-left: 100px; margin-top: -50px;">
+                                    <a class="text-decoration-none text-black" href="#"> <button type="submit" class="btn card rounded" style="margin-top: 4.25rem"> Enviar </button></a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </main>
+</body>
+
+<script>
+
+    nome_cliente_form = document.getElementById('id_nome_completo')
+    nome_cliente_form.setAttribute('class', 'h-35 border-radius-lg form-control')
+    nome_cliente_form.setAttribute('style', 'width:200px; margin: 0 auto; margin-left: 20px; margin-top: 0.8rem;')
+    nome_cliente_form.setAttribute('placeholder', 'Nome do cliente')
+
+    telefone_cliente_form = document.getElementById('id_telefone')
+    telefone_cliente_form.setAttribute('class', 'h-35 border-radius-lg form-control')
+    telefone_cliente_form.setAttribute('style', 'width:200px; margin: 0 auto; margin-left: 20px; margin-top: 0.8rem;')
+    telefone_cliente_form.setAttribute('placeholder', 'Telefone do cliente')
+
+    email_cliente_form = document.getElementById('id_email')
+    email_cliente_form.setAttribute('class', 'h-35 border-radius-lg form-control')
+    email_cliente_form.setAttribute('style', 'width:200px; margin: 0 auto; margin-left: 20px; margin-top: 0.8rem;')
+    email_cliente_form.setAttribute('placeholder', 'Email do cliente')
+
+    endereco_cliente_form = document.getElementById('id_endereco')
+    endereco_cliente_form.setAttribute('class', 'h-35 border-radius-lg form-control')
+    endereco_cliente_form.setAttribute('style', 'width:200px; margin: 0 auto; margin-left: 20px; margin-top: 0.8rem;')
+    endereco_cliente_form.setAttribute('placeholder', 'Endereço do cliente')
+
+    preco_cliente_form = document.getElementById('id_preco')
+    preco_cliente_form.setAttribute('class', 'h-35 border-radius-lg form-control')
+    preco_cliente_form.setAttribute('style', 'width:200px; margin: 0 auto; margin-left: 20px; margin-top: 0.8rem;')
+    preco_cliente_form.setAttribute('placeholder', 'Preço PPR')
+</script>
+
+</html>
+
