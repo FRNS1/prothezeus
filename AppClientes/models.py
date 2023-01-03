@@ -7,7 +7,8 @@ class clientes(models.Model):
     telefone = models.CharField(db_column='telefone', max_length=16)
     email = models.CharField(db_column='email', max_length=100)
     endereco = models.CharField(db_column='endereco', max_length=100)
-    preco = models.DecimalField(db_column='preco', decimal_places=2, max_digits=10)
+    preco = models.DecimalField(
+        db_column='preco', decimal_places=2, max_digits=10)
 
     class Meta:
         managed = False

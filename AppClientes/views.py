@@ -1,5 +1,7 @@
 from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
+from django.views.generic import UpdateView
 
 from .filters import *
 from .forms import *
@@ -32,3 +34,10 @@ def ClientesCad(request):
     context = {'form': form}
 
     return render(request, 'Pages\cadastroclientes.html', context)
+
+
+class UpdateCadCliente(UpdateView):
+    model = clientes
+    template_name = 'Pages/atualizaclientes.html'
+    fields = ['nome_completo', 'telefone', 'email', 'endereco', 'preco']
+    success_url = reverse_lazy('AppClientes:ClientesLab')
