@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('LoginPage.urls', namespace='LoginPage')),
     path('homepage/', include('LoginPage.urls', namespace='homepage')),
     path('clientes/', include('AppClientes.urls', namespace='ClientesLab')),
+    path('tipos-os/', include('AppTiposOs.urls', namespace='TipoOS_home')),
 ]

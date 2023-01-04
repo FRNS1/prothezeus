@@ -26,10 +26,10 @@ def ClientesLab(request):
 
 def ClientesCad(request):
 
-    form = CadastrarCliente(request.POST or None)
+    form = CadastrarServico(request.POST or None)
     if form.is_valid():
         form.save()
-        return redirect('AppClientes:ClientesLab')
+        return redirect('AppLoginPage:homepage')
 
     context = {'form': form}
 
